@@ -1,5 +1,6 @@
+// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDkuHOtFVPAAdf4eD_6BA0gn4PJQXnJQlA",
@@ -8,35 +9,34 @@ const firebaseConfig = {
   projectId: "temporaryviewer-e1507",
   storageBucket: "temporaryviewer-e1507.appspot.com",
   messagingSenderId: "846271951058",
-  appId: "1:846271951058:web:f4f9405c2defe247687d0b",
-  measurementId: "G-SBNF3DC1ZJ"
+  appId: "1:846271951058:web:f4f9405c2defe247687d0b"
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const bookList = document.getElementById("bookList");
+const database = getDatabase(app);
 
-onValue(ref(db, "books"), (snapshot) => {
-  bookList.innerHTML = "";
-  snapshot.forEach((child) => {
-    const data = child.val();
-    const key = child.key;
-    const div = document.createElement("div");
-    div.className = "book";
-    div.innerHTML = `
-      <h3>${data.name}</h3>
-      <img src="${data.cover}" alt="Cover Image" onerror="this.src='https://via.placeholder.com/200x300?text=Image+Not+Found'">
-      <p>👁️ Views: ${data.views}</p>
-      <button onclick="readBook('${key}', '${data.pdf}')">Read</button>
+const bookContainer = document.getElementById("bookContainer");
+
+const booksRef = ref(database, 'books');
+onValue(booksRef, (snapshot) => {
+  bookContainer.innerHTML = '';
+  snapshot.forEach((childSnapshot) => {
+    const book = childSnapshot.val();
+    const key = childSnapshot.key;
+
+    const bookDiv = document.createElement("div");
+    bookDiv.className = "book-item";
+    bookDiv.innerHTML = `
+      <img src="${book.cover}" alt="${book.title}">
+      <h3>${book.title}</h3>
+      <p>👁️ ${book.views} views</p>
+      <button onclick="window.open('${book.link}', '_blank'); updateViews('${key}', ${book.views})">Read</button>
     `;
-    bookList.appendChild(div);
+    bookContainer.appendChild(bookDiv);
   });
 });
 
-window.readBook = function (key, link) {
-  const bookRef = ref(db, "books/" + key);
-  update(bookRef, {
-    views: Math.floor(Math.random() * 10000000) + 1
-  });
-  window.open(link, "_blank");
+window.updateViews = function(key, currentViews) {
+  const bookRef = ref(database, `books/${key}/views`);
+  set(bookRef, currentViews + 1);
 };
