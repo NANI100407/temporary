@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>New Releases</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Book Site</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S73G9BZ9KN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-S73G9BZ9KN');
+  </script>
 </head>
 <body>
-  <h1 class="heading">New Releases</h1>
-  <div class="release-section" id="releases"></div>
+  <div class="container">
+    <div class="new-releases-box">
+      <h1>New Releases</h1>
+      <div id="books-section"></div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
