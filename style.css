@@ -1,32 +1,56 @@
-body.dark-theme {
+body {
+  margin: 0;
+  padding: 0;
   background-color: #000;
-  color: white;
   font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
+  color: white;
 }
 
-.releases-box, .upload-box {
-  background: white;
+.section {
+  border: 2px solid white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: white;
   color: black;
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 20px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
-.book {
-  margin-bottom: 20px;
-  border: 1px solid gray;
-  border-radius: 10px;
+h2 {
+  text-align: center;
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.book-item {
+  border: 1px solid #ccc;
   padding: 10px;
+  border-radius: 10px;
+  width: 180px;
+  background-color: #f0f0f0;
+  text-align: center;
 }
 
-.book img {
+.book-item img {
   width: 100%;
-  max-width: 200px;
-  border-radius: 10px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.book-item button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+} 
+
+.book-item button:hover {
+  background-color: #45a049;
 }
