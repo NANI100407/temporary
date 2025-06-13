@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Upload</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 class="heading">Upload New Book</h1>
-  <form id="uploadForm" class="upload-form">
-    <input type="text" placeholder="Book Name" id="bookName" required />
-    <input type="url" placeholder="Cover Image GDrive Link" id="coverURL" required />
-    <input type="url" placeholder="PDF GDrive Link" id="pdfLink" required />
-    <button type="submit">Upload</button>
-  </form>
+  <div class="container">
+    <h1>Upload New Book</h1>
+    <form id="upload-form">
+      <input type="text" id="book-name" placeholder="Book Name" required /><br>
+      <input type="text" id="cover-link" placeholder="Cover Image Link" required /><br>
+      <input type="text" id="pdf-link" placeholder="PDF GDrive Link" required /><br>
+      <button type="submit">Upload</button>
+    </form>
+    <p id="status-msg"></p>
+  </div>
+
   <script src="admin.js"></script>
 </body>
 </html>
