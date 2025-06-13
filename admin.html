@@ -1,84 +1,25 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
-  <title>Admin Upload Page</title>
-  <style>
-    body {
-      background-color: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    form {
-      background: #222;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
-      text-align: left;
-    }
-    input, button {
-      display: block;
-      margin: 10px 0;
-      padding: 10px;
-      width: 300px;
-      border-radius: 5px;
-      border: none;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <title>My Book Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S73G9BZ9KN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S73G9BZ9KN');
+  </script>
 </head>
 <body>
-  <h1>📚 Upload Your Book</h1>
-  <form id="uploadForm">
-    <input type="text" id="title" placeholder="Book Name" required>
-    <input type="text" id="cover" placeholder="Cover Image URL" required>
-    <input type="text" id="link" placeholder="PDF GDrive Link" required>
-    <button type="submit">Upload</button>
-  </form>  <script type="module">
-    // Import Firebase
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  <div class="section">
+    <h2>📖 New Releases</h2>
+    <div id="bookContainer" class="book-container"></div>
+  </div>
 
-    // Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDkuHOtFVPAAdf4eD_6BA0gn4PJQXnJQlA",
-      authDomain: "temporaryviewer-e1507.firebaseapp.com",
-      databaseURL: "https://temporaryviewer-e1507-default-rtdb.firebaseio.com",
-      projectId: "temporaryviewer-e1507",
-      storageBucket: "temporaryviewer-e1507.appspot.com",
-      messagingSenderId: "846271951058",
-      appId: "1:846271951058:web:f4f9405c2defe247687d0b"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-
-    // Form Submit Handler
-    document.getElementById("uploadForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const title = document.getElementById("title").value;
-      const cover = document.getElementById("cover").value;
-      const link = document.getElementById("link").value;
-
-      const bookRef = push(ref(database, 'books'));
-
-      set(bookRef, {
-        title: title,
-        cover: cover,
-        link: link,
-        views: 0
-      }).then(() => {
-        alert("✅ Book uploaded successfully!");
-        document.getElementById("uploadForm").reset();
-      }).catch((error) => {
-        alert("❌ Upload failed: " + error.message);
-      });
-    });
-  </script></body>
+  <!-- Firebase Scripts -->
+  <script type="module" src="script.js"></script>
+</body>
 </html>
