@@ -1,18 +1,19 @@
-const form = document.getElementById("uploadForm");
-
-form.onsubmit = (e) => {
+document.getElementById("upload-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const name = document.getElementById("bookName").value;
-  const cover = document.getElementById("coverURL").value;
-  const link = document.getElementById("pdfLink").value;
+  const name = document.getElementById("book-name").value.trim();
+  const cover = document.getElementById("cover-link").value.trim();
+  const link = document.getElementById("pdf-link").value.trim();
 
-  const newBook = { name, cover, link };
+  if (!name || !cover || !link) {
+    document.getElementById("status-msg").textContent = "Please fill all fields.";
+    return;
+  }
 
-  const books = JSON.parse(localStorage.getItem("books") || "[]");
-  books.push(newBook);
+  const books = JSON.parse(localStorage.getItem("books")) || [];
+  books.push({ name, cover, link });
   localStorage.setItem("books", JSON.stringify(books));
 
-  alert("Book uploaded successfully!");
-  form.reset();
-};
+  document.getElementById("status-msg").textContent = "Book uploaded successfully!";
+  this.reset();
+});
