@@ -1,3 +1,4 @@
+// Firebase setup
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
@@ -8,30 +9,33 @@ const firebaseConfig = {
   projectId: "temporaryviewer-e1507",
   storageBucket: "temporaryviewer-e1507.appspot.com",
   messagingSenderId: "846271951058",
-  appId: "1:846271951058:web:f4f9405c2defe247687d0b",
-  measurementId: "G-SBNF3DC1ZJ"
+  appId: "1:846271951058:web:f4f9405c2defe247687d0b"
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const database = getDatabase(app);
 
-window.uploadBook = function () {
-  const name = document.getElementById("bookName").value;
-  const cover = document.getElementById("coverLink").value;
-  const pdf = document.getElementById("pdfLink").value;
+const uploadForm = document.getElementById("uploadForm");
+const status = document.getElementById("status");
 
-  if (name && cover && pdf) {
-    push(ref(db, "books"), {
-      name,
-      cover,
-      pdf,
-      views: 0
-    });
-    alert("✅ Book uploaded successfully!");
-    document.getElementById("bookName").value = "";
-    document.getElementById("coverLink").value = "";
-    document.getElementById("pdfLink").value = "";
-  } else {
-    alert("⚠️ Please fill all fields.");
-  }
-}
+uploadForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const cover = document.getElementById("cover").value;
+  const link = document.getElementById("link").value;
+
+  const booksRef = ref(database, 'books');
+  push(booksRef, {
+    title,
+    cover,
+    link,
+    views: 0
+  }).then(() => {
+    status.textContent = "Book uploaded successfully!";
+    uploadForm.reset();
+  }).catch((error) => {
+    status.textContent = "Error uploading book.";
+    console.error(error);
+  });
+});
