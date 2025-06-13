@@ -1,84 +1,32 @@
-body {
-  margin: 0;
+body.dark-theme {
+  background-color: #000;
+  color: white;
   font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: white;
-}
-
-.container {
+  text-align: center;
   padding: 20px;
 }
 
-h1 {
-  text-align: center;
+.releases-box, .upload-box {
+  background: white;
+  color: black;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.book {
   margin-bottom: 20px;
-}
-
-.new-releases-box {
-  background-color: white;
-  border: 2px solid white;
-  border-radius: 12px;
-  padding: 20px;
-  color: black;
-}
-
-#books-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.book-card {
-  border: 2px solid white;
-  padding: 15px;
-  border-radius: 12px;
-  background-color: white;
-  color: black;
-  width: 200px;
-  text-align: center;
-}
-
-.cover {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #222;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #444;
-}
-
-.views {
-  font-size: 14px;
-  color: #555;
-}
-
-input {
-  display: block;
-  margin: 10px auto;
-  padding: 8px;
-  width: 80%;
-  border-radius: 6px;
-  border: none;
-}
-
-form button {
-  background-color: #28a745;
+  border: 1px solid gray;
+  border-radius: 10px;
   padding: 10px;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
+}
+
+.book img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
 }
