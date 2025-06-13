@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>New Releases</title>
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="script.js"></script>
+  <title>My Book Viewer</title>
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S73G9BZ9KN"></script>
@@ -14,10 +13,13 @@
     gtag('config', 'G-S73G9BZ9KN');
   </script>
 </head>
-<body class="dark-theme">
-  <h1>New Releases</h1>
-  <div class="releases-box" id="bookList">
-    <!-- Books will load here -->
+<body>
+  <div class="section">
+    <h2>📖 New Releases</h2>
+    <div id="bookContainer" class="book-container"></div>
   </div>
+
+  <!-- Firebase Scripts -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
